@@ -2,7 +2,17 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "outDir": "../out-tsc/app",
-    "types": []
+    "types": [],
+    "baseUrl": "src",                 // Main source directory same level as tsconfig
+    "paths": {
+      "app/*": [ "app/*" ],           // src/app
+      "app/directives/*": [ "app/directives/*" ],             // src/ui       
+      "app/services/*": [ "app/services/*" ], // src/services
+      "app/pipes/*": [ "app/pipes/*" ],     // src/assests
+      "app/models/*": [ "app/models/*" ],      // src/models
+      "app/data-services/*": [ "app/data-services/*" ],
+      "environments/*": [ "environments/*" ]  
+    },
   },
   "exclude": [
     "test.ts",
