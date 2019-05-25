@@ -1,0 +1,26 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <ul class="navbar-nav mr-auto">
+    <p>Welcome guest,</p>
+  </ul>
+  <ul class="navbar-nav col-md-8">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Search...">
+      <div class="input-group-append">
+        <button class="btn btn-secondary" type="button">
+          <fa-icon [icon]="faSearch"></fa-icon>
+        </button>
+      </div>
+    </div>
+  </ul>
+  <ul class="navbar-nav ml-auto">
+    <div>
+      <p>Shopping Cart:</p>
+    </div>
+    <div style="text-align:center">
+      <fa-icon [icon]="faShoppingCart"></fa-icon>
+    </div>
+    <div>
+      <p>{{numberOfProductsInShoppingCart}}</p>
+    </div>
+  </ul>
+</nav>

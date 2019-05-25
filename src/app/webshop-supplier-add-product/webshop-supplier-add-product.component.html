@@ -1,0 +1,42 @@
+<div class="container center">
+  <form (ngSubmit)="onSaveProduct(f)" #f="ngForm">
+    <div class="row">
+      <div class="col">
+        <h2>Add a new product:</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <label>Product's Name: </label>
+        <input type="text" name="name" ngModel>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <label for="inputState">Category</label>
+        <select class="form-control" [(ngModel)]="selectedCategory" (change)="getSubCategories($event)">
+          <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <label for="inputState">Subcategory</label>
+        <select class="form-control" [(ngModel)]="selectedSubCategory" (change)="setSub($event)">
+          <option *ngFor="let subCategory of subCategories" [value]="subCategory.id">{{subCategory.name}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <label>Image Path: </label>
+        <input type="text" name="imagePath" ngModel>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <button type="submit">Submit</button>
+      </div>
+    </div>
+  </form>
+</div>

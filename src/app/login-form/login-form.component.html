@@ -1,0 +1,27 @@
+<div class="container center">
+  <form (ngSubmit)="onLogin(f)" #f="ngForm">
+    <div class="row">
+      <div class="col">
+        <h2>Welcome Back</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <label>Username: </label>
+        <input type="email" name="username" ngModel>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <label>password: </label>
+        <input type="password" name="password" ngModel>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <button type="submit">Submit</button>
+      </div>
+    </div>
+  </form>
+</div>
+
