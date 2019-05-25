@@ -9,7 +9,7 @@
       "directives/*": [ "app/directives/*" ],             // src/ui       
       "services/*": [ "app/services/*" ], // src/services
       "pipes/*": [ "app/pipes/*" ],     // src/assests
-      "models/*": [ "app/models/*" ],      // src/models
+      "models/*": [ "models/*" ],      // src/models
       "data-services/*": [ "app/data-services/*" ],
       "environments/*": [ "environments/*" ]  
     },
