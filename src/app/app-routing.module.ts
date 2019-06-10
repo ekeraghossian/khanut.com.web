@@ -4,11 +4,12 @@ import { RegisterationComponent } from './registeration-form/registeration.compo
 import { LoginFormComponent } from './login-form/login-form.component';
 import { HomeViewComponent } from './webshop-home-view/home-view.component';
 import { WebshopSupplierAddProductComponent } from './webshop-supplier-add-product/webshop-supplier-add-product.component';
+import { LoginGuard } from './services/loginGuard.guard';
 
 const routes: Routes = [
     {path: 'register' , component: RegisterationComponent},
     {path: 'login', component: LoginFormComponent},
-    {path: 'supplier', component: WebshopSupplierAddProductComponent},
+    {path: 'supplier', component: WebshopSupplierAddProductComponent, canActivate: [LoginGuard]},
     {path: '', component: HomeViewComponent}
 ];
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoriesService } from '../services/categories.service';
 import { Category } from '../models/category.model';
+import { TreeNode, ITreeOptions } from 'angular-tree-component';
 
 @Component({
   selector: 'app-webshop-categories',
@@ -8,22 +9,58 @@ import { Category } from '../models/category.model';
   styleUrls: ['./webshop-categories.component.css']
 })
 export class WebshopCategoriesComponent implements OnInit {
-  categories: Category[];
-  nodes: any[];
+  nodes: any[] = [];
+  /* options = {
+    getChildren: (node:TreeNode) => {
+        this.getSubCatagories(node.id);
+    }
+  } */
+  options: ITreeOptions = {
+    getChildren: this.getSubCatagories.bind(this)
+  };
 
   constructor(private categoriesService: CategoriesService) { }
 
   ngOnInit() {
     this.getCatagories();
-
+    
   }
+
+  asyncChildren = [];
 
   async getCatagories() {
     await this.categoriesService.getCategories().subscribe(
       res => {
+        console.log(res);
+        this.addHasChildren(res);
+        console.log(res);
       this.nodes = res;
     });
   }
+
+  newNodes;
+  async getSubCatagories(node: any) {
+    await this.categoriesService.getSubCategories(node.id).subscribe(
+      res => {
+      console.log(res);
+      this.asyncChildren = res;
+      this.newNodes = this.asyncChildren.map((c) => Object.assign({}, c));
+    });
+    
+      return new Promise((resolve, reject) => {
+        setTimeout(() => resolve(this.newNodes), 1000);
+      });
+  }
+
+  addHasChildren(categories: Category[]) {
+    for(let cat of categories) {
+      cat.hasChildren = true;
+    }
+  }
+
+
+
+  
 
 
   /*

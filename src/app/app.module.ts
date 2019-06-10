@@ -25,7 +25,8 @@ import { WebshopShoppingcartComponent } from './webshop-shoppingcart/webshop-sho
 import { ShoppingcartDataService } from './data-services/shoppingcart.dataservice';
 import { WebshopSupplierAddProductComponent } from './webshop-supplier-add-product/webshop-supplier-add-product.component';
 import { AddProductService } from './services/addProduct.service';
-
+import { JwtModule } from '@auth0/angular-jwt';
+import { LoginGuard } from './services/loginGuard.guard';
 
 
 @NgModule({
@@ -50,9 +51,17 @@ import { AddProductService } from './services/addProduct.service';
     BrowserAnimationsModule,
     HttpClientModule,
     FontAwesomeModule,
-    TreeModule.forRoot()
+    TreeModule.forRoot(),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: function  tokenGetter() {
+             return     localStorage.getItem('access_token');},
+        whitelistedDomains: ['localhost:4200'],
+        blacklistedRoutes: ['http://localhost:8080/api/signin', 'http://localhost:8080/api/register']
+      }
+    })
   ],
-  providers: [RegisterationService, LoginService, CategoriesService, ProductsService, ShoppingcartDataService, AddProductService],
+  providers: [RegisterationService, LoginService, CategoriesService, ProductsService, ShoppingcartDataService, AddProductService, LoginGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
